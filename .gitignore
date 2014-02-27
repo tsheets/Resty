@@ -6,3 +6,5 @@ target/*
 .project
 bin/*
 *~
+.idea/*
+resty.iml
