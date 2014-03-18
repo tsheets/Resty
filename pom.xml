@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>us.monoid.web</groupId>
+  <groupId>com.tsheets.utils</groupId>
   <artifactId>resty</artifactId>
   <packaging>jar</packaging>
-  <version>0.3.3-SNAPSHOT</version>
+  <version>0.3.4</version>
   <name>Resty</name>
   <description>Simple Java client to talk to RESTful backends</description>
   <url>http://github.com/beders/resty</url>
@@ -20,9 +20,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git@github.com:beders/Resty.git</connection>
-    <developerConnection>scm:git:git@github.com:beders/Resty.git</developerConnection>
-    <url>git@github.com:beders/Resty.git</url>
+    <connection>scm:git:git@github.com:tsheets/Resty.git</connection>
+    <developerConnection>scm:git:git@github.com:tsheets/Resty.git</developerConnection>
+    <url>git@github.com:tsheets/Resty.git</url>
   </scm>
   <build>
   	<plugins>
