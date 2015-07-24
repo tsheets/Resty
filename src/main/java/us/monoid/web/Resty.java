@@ -643,7 +643,7 @@ public class Resty {
 
 		SSLContext sc;
 		try {
-			sc = SSLContext.getInstance("SSL");
+			sc = SSLContext.getInstance("TLS");
 			sc.init(null, new TrustManager[] { trm }, null);
 			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 		} catch (KeyManagementException e) {
