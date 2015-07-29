@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.xpath.XPathException;
@@ -121,6 +122,7 @@ public class Resty {
 		for (Option o : options) {
 			o.init(this);
 		}
+		setToTLSFactoryOnly();
 		return this;
 	}
 
@@ -416,7 +418,6 @@ public class Resty {
 		con.setRequestProperty("User-Agent", userAgent);
 		con.setRequestProperty("Accept", resource.getAcceptedTypes());
 	}
-
 	/**
 	 * Get the content from the URLConnection, create a Resource representing the content and carry over some metadata like HTTP Result and location header.
 	 * 
@@ -628,27 +629,19 @@ public class Resty {
 		return additionalHeaders;
 	}
 
-	/** Install a SSL socket factory which will trust all certificates. 
+	/** Install a SSL socket factory which will trust all certificates.
 	 * This is generally considered dangerous as you won't know if you are really talking to the server you think you are talking to.
-	 * This is like your best friend using his Facebook account in an Apple store and forgetting to log out. 
-	 * 
+	 * This is like your best friend using his Facebook account in an Apple store and forgetting to log out.
+	 *
 	 * This method should be called once and replaces the SSL factory for ALL HttpsURLConnections.
 	 */
-	public static void ignoreAllCerts() {
-		TrustManager trm = new X509TrustManager() {
-			public void checkClientTrusted(X509Certificate[] certs, String authType) {}
-			public void checkServerTrusted(X509Certificate[] certs, String authType) {}
-			public X509Certificate[] getAcceptedIssuers() {	return null; }
-		};
-
-		SSLContext sc;
+	public static void setToTLSFactoryOnly() {
 		try {
-			sc = SSLContext.getInstance("TLS");
-			sc.init(null, new TrustManager[] { trm }, null);
-			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-		} catch (KeyManagementException e) {
-			e.printStackTrace();
+			SSLSocketFactoryTLS factoryTLS = new SSLSocketFactoryTLS();
+			HttpsURLConnection.setDefaultSSLSocketFactory(factoryTLS);
 		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (KeyManagementException e) {
 			e.printStackTrace();
 		}
 	}

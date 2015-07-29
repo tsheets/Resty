@@ -29,15 +29,4 @@ public class RestyXmlTest {
 		System.out.println(text);
 		assertTrue(text.contains("Slashdot: Developers"));
 	}
-	
-	/** Getting the Google Developer calendar feed as JSON and following to the first entry, which is an XML resource:
-*/
-	@Test
-	public void jsonToXml() throws Exception {
-		Resty r = new Resty();
-		String title = r.json("http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json").
-			xml(path("feed.entry[0].id.$t")).get("entry/title/text()", String.class);
-		assertNotNull(title);
-		System.out.println(title);
-	}
 }

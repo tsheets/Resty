@@ -3,7 +3,7 @@
   <groupId>com.tsheets.utils</groupId>
   <artifactId>resty</artifactId>
   <packaging>jar</packaging>
-  <version>0.3.4</version>
+  <version>0.3.5</version>
   <name>Resty</name>
   <description>Simple Java client to talk to RESTful backends</description>
   <url>http://github.com/beders/resty</url>
